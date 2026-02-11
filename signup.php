@@ -27,7 +27,7 @@ if (strlen($password) < 6) {
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     die("Invalid email format");
-}
+}                                              
 
 
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -40,7 +40,7 @@ if (mysqli_num_rows($result) > 0) {
     die("User already exists");
 }
 
-
+                
 $sql = "INSERT INTO users (username, email, password)
         VALUES ('$username', '$email', '$hashedPassword')";
 
@@ -50,5 +50,5 @@ if (mysqli_query($conn, $sql)) {
     exit;
 } else {
     die("Signup failed");
-}
+}                           
 ?>
