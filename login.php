@@ -1,32 +1,45 @@
+
+
+
+
 <?php
 include "db.php";
+require_once __DIR__ . '/vendor/autoload.php';
 
-if(!isset($_POST['email']) || !isset($_POST['password'])){
-    echo "Please provide email and password";
-    exit;
-}
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-$email = trim($_POST['email']);
-$password = trim($_POST['password']);
+session_start();
 
-$email = strtolower($email);
+if(isset($_POST['email']) && isset($_POST['password'])){
+    $email = strtolower(trim($_POST['email']));
+    $password = trim($_POST['password']);
 
-$sql = "SELECT * FROM users WHERE LOWER(email)='$email'";
-$result = mysqli_query($conn, $sql) or die("Database Query Failed");
+    $stmt = $conn->prepare("SELECT * FROM users WHERE LOWER(email)=?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if (mysqli_num_rows($result) === 1) {
-
-    $user = mysqli_fetch_assoc($result);
-
-    if (password_verify($password, $user['password'])) {
-        echo "Login Successful<br>"
-        header("Location: index.html");
-        exit;
-    } else {
-        echo "Incorrect password";
+    if($result->num_rows === 1){
+        $user = $result->fetch_assoc();
+        if(password_verify($password, $user['password'])){
+            header("Location: index.html");
+            exit;
+        }else{
+            echo "Incorrect password";
+        }
+    }else{
+        echo "Account not found";
     }
-
-} else {
-    echo "Account not found";
 }
+
+// Google OAuth login URL
+$googleClient = new Google_Client();
+$googleClient->setClientId($_ENV['GOOGLE_CLIENT_ID']);
+$googleClient->setClientSecret($_ENV['GOOGLE_CLIENT_SECRET']);
+$googleClient->setRedirectUri($_ENV['GOOGLE_REDIRECT_URI']);
+$googleClient->addScope("email");
+$googleClient->addScope("profile");
+
+$googleLoginUrl = $googleClient->createAuthUrl();
 ?>
