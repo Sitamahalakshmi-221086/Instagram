@@ -1,82 +1,161 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Digital Resume</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Digital Resume</title>
 
 <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body {
+    font-family: Arial;
+}
+section {
+    margin-top: 20px;
+}
+.progress {
+    height: 25px;
+}
+</style>
 
 </head>
+
 <body>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <div class="container">
-<a class="navbar-brand">MyResume</a>
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"></button>
+<a class="navbar-brand">My Resume</a>
 
-<div class="collapse navbar-collapse" id="nav">
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
 <ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link">Home</a></li>
-<li class="nav-item"><a class="nav-link">About</a></li>
-<li class="nav-item"><a class="nav-link">Contact</a></li>
+<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+<li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+<li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
 </ul>
 </div>
 </div>
 </nav>
 
 <!-- Hero -->
-<div class="container text-center mt-5">
-<h1>Welcome</h1>
-<p>My Digital Resume</p>
-<button class="btn btn-primary" id="btn">Click Me</button>
+<section class="text-center p-5 bg-light">
+<h1>Bommu Sitamahalakshmi</h1>
+<p>Web Developer | Student</p>
+</section>
+
+<!-- About -->
+<section id="about" class="container p-5">
+<h2>About Me</h2>
+<p>I am a student interested in web development and software technologies.</p>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="container p-5">
+<h2>Skills</h2>
+
+<p>HTML</p>
+<div class="progress">
+<div class="progress-bar w-75">75%</div>
 </div>
 
-<!-- Grid -->
-<div class="container mt-5">
-<div class="row">
-<div class="col-12 col-md-6 col-lg-4">
-<div class="card p-3">Project 1</div>
+<p>CSS</p>
+<div class="progress">
+<div class="progress-bar w-50">50%</div>
 </div>
-<div class="col-12 col-md-6 col-lg-4">
-<div class="card p-3">Project 2</div>
-</div>
-<div class="col-12 col-md-6 col-lg-4">
-<div class="card p-3">Project 3</div>
-</div>
+
+</section>
+
+<!-- Projects -->
+<section id="projects" class="container p-5">
+<h2>Projects</h2>
+
+<div class="card" style="width: 18rem;">
+<div class="card-body">
+<h5 class="card-title">Portfolio Website</h5>
+
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal">
+View Details
+</button>
+
 </div>
 </div>
 
-<!-- Form -->
-<div class="container mt-5">
-<input type="text" class="form-control mb-2" placeholder="Name">
-<input type="email" class="form-control mb-2" placeholder="Email">
-<button class="btn btn-success">Submit</button>
-</div>
+</section>
 
 <!-- Modal -->
-<div class="modal fade" id="modal">
+<div class="modal fade" id="projectModal">
 <div class="modal-dialog">
-<div class="modal-content p-3">
-<h4>Hello</h4>
-<button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+<div class="modal-content">
+
+<div class="modal-header">
+<h5>Project Details</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+
+<div class="modal-body">
+Portfolio created using Bootstrap.
+</div>
+
 </div>
 </div>
 </div>
+
+<!-- Carousel (no images) -->
+<div id="gallery" class="carousel slide container mt-5" data-bs-ride="carousel">
+<div class="carousel-inner">
+
+<div class="carousel-item active text-center p-5 bg-secondary text-white">
+<h3>Project Showcase 1</h3>
+</div>
+
+<div class="carousel-item text-center p-5 bg-dark text-white">
+<h3>Project Showcase 2</h3>
+</div>
+
+</div>
+</div>
+
+<!-- Contact -->
+<section id="contact" class="container p-5">
+<h2>Contact</h2>
+
+<form>
+<input type="text" class="form-control mb-3" placeholder="Name">
+<input type="email" class="form-control mb-3" placeholder="Email">
+<textarea class="form-control mb-3"></textarea>
+<button class="btn btn-success">Submit</button>
+</form>
+
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center p-3">
+<i class="bi bi-github"></i>
+<i class="bi bi-linkedin"></i>
+</footer>
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-$("#btn").click(function(){
-    $("#modal").modal('show');
+$(document).ready(function () {
+    $("h2").click(function () {
+        $(this).toggleClass("text-primary");
+    });
 });
 </script>
 
